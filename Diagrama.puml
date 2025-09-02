@@ -1,0 +1,127 @@
+@startuml
+
+class Juego {
+    +Actualizar()
+}
+class Jugador {
+    +Mover()
+    +Interactuar()
+}
+class Nivel {
+    +Interactuar()
+}
+class Medicina {
+    +Rotar()
+    +Caer()
+    +Interactuar()
+}
+class Bloque {
+    +Interactuar()
+}
+class Virus {
+    +Mover()
+    +Interactuar()
+}
+class Contador {
+    +Interactuar()
+}
+class Tiempo {
+    +Interactuar()
+}
+class Movimiento {
+    +Mover()
+    +Interactuar()
+}
+class Velocidad {
+    +Interactuar()
+}
+class Colision {
+    +Interactuar()
+}
+class Color {
+    +Interactuar()
+}
+
+
+class MemoriaJuego {
+    +Iniciar()
+    +Pausar()
+    +Finalizar()
+    +Activo()
+}
+class MemoriaNivel  {
+    +Completar()
+    +Reiniciar()
+    +Activo()
+}
+class MemoriaJugador  {
+    +Vivir()
+    +Perder()
+    +Mover()
+    +Activo()
+}
+class MemoriaMedicina  {
+    +Destruir()
+    +Caer()
+    +Rotar()
+    +Activo()
+}
+class MemoriaVirus  {
+    +Destruir()
+    +Mover()
+    +Infectar()
+    +Activo()
+}
+class MemoriaBloque  {
+    +Romper()
+    +Caer()
+    +Activo()
+}
+class MemoriaMovimiento  {
+    +Iniciar()
+    +Detener()
+    +Activo()
+}
+
+
+Jugador --|> Medicina
+
+
+Juego *-- Jugador
+Juego *-- Nivel
+Juego *-- Tiempo
+Juego *-- Contador
+Juego *-- MemoriaJuego
+Juego *-- MemoriaPuntuacion
+
+Jugador *-- MemoriaJugador
+
+Medicina o-- Movimiento
+Medicina *-- "2" Bloque
+Medicina *-- "3" Color
+Medicina *-- MemoriaMedicina
+Medicina *-- MemoriaBloque
+
+Virus *-- "1" Bloque
+Virus *-- "3" Color
+Virus *-- MemoriaVirus
+
+Nivel o-- Contador
+Nivel *-- Tiempo
+Nivel *-- Velocidad
+Nivel *-- MemoriaNivel
+
+Movimiento o-- Colision
+Movimiento *-- MemoriaMovimiento
+Virus o-- Colision
+Bloque o-- Colision
+
+Contador *-- Virus
+Contador *-- Medicina
+Contador *-- Nivel
+Contador *-- Jugador
+
+Tiempo *-- Movimiento
+Tiempo *-- Colision
+
+@enduml
