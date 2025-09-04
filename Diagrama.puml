@@ -2,89 +2,123 @@
 
 class Juego {
     +Actualizar()
+    +Iniciar()
+    +Finalizar()
 }
 class Jugador {
     +Mover()
-    +Interactuar()
+    +Vivir()
+    +Perder()
 }
 class Nivel {
-    +Interactuar()
+    +Cargar()
+    +Reiniciar()
 }
 class Medicina {
     +Rotar()
     +Caer()
-    +Interactuar()
+    +Destruir()
 }
 class Bloque {
-    +Interactuar()
+    +Romper()
+    +Caer()
 }
 class Virus {
-    +Mover()
-    +Interactuar()
+    +Mostrar()
+    +Destruir()
 }
 class Contador {
-    +Interactuar()
+    +Sumar()
+    +Restar()
 }
 class Tiempo {
-    +Interactuar()
+    +Contar()
+    +Pausar()
 }
 class Movimiento {
     +Mover()
-    +Interactuar()
+    +Detener()
 }
 class Velocidad {
-    +Interactuar()
+    +Aumentar()
+    +Disminuir()
 }
 class Colision {
-    +Interactuar()
+    +Detectar()
+    +Resolver()
 }
 class Color {
-    +Interactuar()
+    +Asignar()
 }
 
+class Puntuacion {
+    +Sumar()
+    +Reiniciar()
+}
+class Tablero {
+    +Cargar()
+    +Actualizar()
+}
+class Entrada {
+    +LeerTeclas()
+}
+class Item {
+    +Usar()
+}
+class PowerUp {
+    +Activar()
+}
+class Ranking {
+    +Guardar()
+    +Mostrar()
+}
+class Configuracion {
+    +CambiarOpcion()
+}
+class Partida {
+    +Guardar()
+    +Cargar()
+}
 
-class MemoriaJuego {
+class MemoriaJuego  {
     +Iniciar()
     +Pausar()
     +Finalizar()
-    +Activo()
 }
 class MemoriaNivel  {
     +Completar()
     +Reiniciar()
-    +Activo()
 }
 class MemoriaJugador  {
     +Vivir()
     +Perder()
     +Mover()
-    +Activo()
 }
 class MemoriaMedicina  {
     +Destruir()
     +Caer()
     +Rotar()
-    +Activo()
 }
 class MemoriaVirus  {
-    +Destruir()
-    +Mover()
-    +Infectar()
     +Activo()
+    +Destruir()
 }
-class MemoriaBloque  {
+class MemoriaBloque {
     +Romper()
     +Caer()
-    +Activo()
 }
 class MemoriaMovimiento  {
     +Iniciar()
     +Detener()
-    +Activo()
+}
+class MemoriaPuntuacion  {
+    +Guardar()
+    +Resetear()
 }
 
 
-Jugador --|> Medicina
+Jugador --|> Juego
+Item <|-- PowerUp
 
 
 Juego *-- Jugador
@@ -93,35 +127,49 @@ Juego *-- Tiempo
 Juego *-- Contador
 Juego *-- MemoriaJuego
 Juego *-- MemoriaPuntuacion
+Juego *-- Tablero
+Juego *-- Configuracion
+Juego *-- Partida
+Juego *-- Entrada
 
+Jugador *-- Medicina
+Jugador o-- Movimiento
 Jugador *-- MemoriaJugador
 
 Medicina o-- Movimiento
-Medicina *-- "2" Bloque
+Medicina *-- Bloque
 Medicina *-- "3" Color
 Medicina *-- MemoriaMedicina
-Medicina *-- MemoriaBloque
 
-Virus *-- "1" Bloque
+Virus *-- Bloque
 Virus *-- "3" Color
 Virus *-- MemoriaVirus
+Virus o-- Colision
 
 Nivel o-- Contador
 Nivel *-- Tiempo
 Nivel *-- Velocidad
 Nivel *-- MemoriaNivel
+Nivel *-- Tablero
 
 Movimiento o-- Colision
 Movimiento *-- MemoriaMovimiento
-Virus o-- Colision
+
 Bloque o-- Colision
+Bloque *-- MemoriaBloque
 
 Contador *-- Virus
 Contador *-- Medicina
 Contador *-- Nivel
 Contador *-- Jugador
+Contador *-- Puntuacion
 
 Tiempo *-- Movimiento
 Tiempo *-- Colision
+
+Puntuacion *-- Ranking
+Puntuacion *-- MemoriaPuntuacion
+
+Tablero *-- Item
 
 @enduml
