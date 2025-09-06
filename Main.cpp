@@ -1,8 +1,11 @@
-#include<iostream>
+#include <iostream>
+#include <Foco.hpp>
 using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    cout<<"ya me quiero ir"<<endl;
+    Foco Foquito;
+    Foquito.Encender();
+    Foquito.Apagar();
     return 0;
 }
