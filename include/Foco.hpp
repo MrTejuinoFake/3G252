@@ -7,8 +7,7 @@ private:
     EstadoFoco estado;
 
 public:
-    Foco(/* args */) {}
     ~Foco() {}
-    void Encender() {}
-    void Apagar() {}
+    void Encender(EstadoFoco=true) {}
+    void Apagar(EstadoFoco=false) {}
 };
